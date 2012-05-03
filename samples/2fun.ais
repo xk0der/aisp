@@ -1,0 +1,23 @@
+Two functions in a file
+8/September/2001
+Amit Singh
+
+@fun(test1(s))
+@fun(test2(n))
+
+@def(test1(str))
+	@dis(In test1 str = @get(str)\n)
+@ret(Done test1)
+
+@def(test2(num))
+	@dis(In test2 num = @get(num)\n)
+@ret(Done test2)
+
+@cls()
+
+@dis(Run...\n)
+@test1(abcd)
+@test2(1234)
+@dis(Done!\n)
+
+@end()

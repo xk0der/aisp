@@ -1,0 +1,9 @@
+Greet user
+6/Nov/2006
+Amit Singh
+amit@ensparc.com
+
+@Usr(Name,S)
+@Dis(Please enter your name:)
+@Inp(Name)
+@Dis(Hi @get(Name)! Nice to meet.\n)

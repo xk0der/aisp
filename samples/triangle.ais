@@ -1,0 +1,16 @@
+
+
+@usr(i,n) @usr(j,n)
+
+@set(i,1)
+
+@while(@not(@equ(@get(i),11)))
+	
+	@set(j,@get(i))
+	@while(@not(@equ(@get(j),11)))
+		@dis(*)
+		@inc(j)
+	@loop()
+	@inc(i)
+	@dis(\n)
+@loop()

@@ -1,0 +1,22 @@
+Script to test if()..else()..endif()
+9/September/2001
+Amit Singh
+
+@cls()
+
+@usr(cnt,n)
+@usr(ch,s)
+
+@set(cnt,0)
+
+:loop
+	@dis(cnt = @get(cnt)\n)
+	@dis(Continue ?([y]/n))
+	@inp(ch)
+	@if(@equ(@get(ch),n))
+		@dis(Exiting!\n)	
+	@else()
+		@inc(cnt)
+		@jmp(loop)
+	@endif()
+@end()

@@ -1,0 +1,9 @@
+terms with values!!
+23/September/2001
+Amit Singh
+
+!include(stand.ail)
+
+!define(VER, * 2.1 * )
+
+@println(Version = @term(VER))

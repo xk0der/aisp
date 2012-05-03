@@ -1,0 +1,19 @@
+Script to test array of Strings 
+27/September/2001
+Amit Singh
+
+!include(stand.ail)
+
+@dim(str,S,10)
+
+@usr(i,n)
+
+@for(i,0,9)
+	@print(\{@_(i)\} Enter a string:)
+	@inp(str,@_(i))
+@next()	
+
+@for(i,0,9)
+	@println(Value stored in str\{@_(i)\} = @get(str,@_(i)))
+@next()
+

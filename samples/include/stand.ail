@@ -1,0 +1,197 @@
+Standard Library	Version 0.0.7
+Created     : 2/September/2001
+Last Edited : 26/September/2001
+Amit Singh
+
+Functions in the library:
+print(exp)			0.0.1
+	- same as dis()
+	- type of exp = S
+	- Returns : exp
+println(exp)			0.0.1
+	- Same as dis BUT automactially appends a \n to the exp
+	- type of exp = S
+	- Returns : exp
+
+input(prompt,var)		0.0.2
+	- displays the 'prompt' expression and takens the input in varible 'var'
+	- Variable 'var' is passed by refrence
+	- Type of prompt = S, var = R
+	- Returns : value entered by the user
+
+_not(var)			0.0.3
+_and(var1,var2)
+_xor(var1,var2)
+_or(var1,var2)
+	- shortcuts of boolean tokens ... unlike their original counterparts these take 'variables'
+          as arguments
+        - All variables passed  by refrence
+        - Type of var = R, varX = R (Where X=1,2)
+	- Returns : logical NOT,AND,XOR and OR operation performed on the variables respectively
+
+randomize()			0.0.4
+	- Seeds the random number generator with timer() value
+	- Returns the seed used ( A numeric value )
+
+random(lower,upper)		0.0.4
+	- Returns a random number between the range 'lower' & 'upper' all inclusive
+	- Type of lower = N, upper = N	
+	- Returns : A random number
+
+_(var)				0.0.5
+	- Shortcut to get() token
+	- Type of var = R
+	- Returns : value stored in variable pointed to by 'var'
+
+<(exp1,exp2)			0.0.5
+	- Shortcut to isl() token
+	- Type of exp1 = S, exp2 = S
+	- Returns : TRUE if exp1 IS LESS THAN exp2, otherwise FALSE
+
+>(exp1,exp2)			0.0.5
+	- Shortcut to isg() token
+	- Type of exp1 = S, exp2 = S
+	- Returns : TRUE if exp1 IS GREATER THAN exp2, otherwise FALSE
+
+=(exp1,exp2)			0.0.5
+	- Shortcut to equ() token
+	- Type of exp1 = S, exp2 = S
+	- Returns : TRUE if exp1 IS EQUAL TO exp2, otherwise FALSE
+
+!(exp)				0.0.6
+	- Shortcut to term() token
+	- Type of exp = S
+	- Returns: Value that the term 'exp' represents
+
+
+<=(exp1,exp2)			0.0.7
+	- returns TRUE if 'exp1' is LESS THAN OR EQUAL TO exp2
+	- Types of exp1 = S, exp2 = S
+	- Returns: TRUE or FALSE
+	
+>=(exp1,exp2)			0.0.7
+	- returns true if 'exp1' is LESS THAN OR EQUAL TO exp2
+	- Types of exp1 = S, exp2 = S
+	- Returns: TRUE or FALSE
+	
+++(var)				0.0.7
+	- shortcut to inc() token
+	- type of var = R
+	- Returns: value stored in variable 'var' incremented by 1
+	
+--(var)				0.0.7
+	- shortcut to dec() token
+	- type of var = R
+	- Returns: value stored in variable 'var' decremented by 1
+
+
+!ifndef(__AISP_STAND_AIL)
+!define(__AISP_STAND_AIL)
+
+@fun(print(s))
+@fun(println(s))
+@fun(input(s,r))
+@fun(_not(r))
+@fun(_and(r,r))
+@fun(_xor(r,r))
+@fun(_or(r,r))
+@fun(random(n,n))
+@fun(randomize())
+
+* Shortcuts!
+@fun(_(r)) 		get
+@fun(<(s,s))		isl
+@fun(>(s,s))		isg
+@fun(=(s,s))		equ
+
+@fun(<=(s,s))
+@fun(>=(s,s))
+@fun(++(r))
+@fun(--(r))
+
+@fun(!(s))		term
+
+@def(++(num))
+@ret(@inc(num))
+@def(--(num))
+@ret(@dec(num))
+
+
+@def(>=(e1,e2))
+	@usr(val,B)
+	@if( @_or(@>(@_(e1),@_(e2)), @=(@_(e1),@_(e2))) )
+		@set(val,TRUE)
+	@else()
+		@set(val,FALSE)
+	@endif()	
+@ret(@_(val))
+
+
+@def(<=(e1,e2))
+	@usr(val,B)
+	@if( @_or(@<(@_(e1),@_(e2)), @=(@_(e1),@_(e2))) )
+		@set(val,TRUE)
+	@else()
+		@set(val,FALSE)
+	@endif()	
+@ret(@_(val))
+
+@def(!(str))
+@ret(@term(@trim(@_(str))))
+
+@def(_(var))
+@ret(@get(var))
+
+@def(<(e1,e2))
+@ret(@isl(@get(e1),@get(e2)))
+
+@def(>(e1,e2))
+@ret(@isg(@get(e1),@get(e2)))
+
+@def(=(e1,e2))
+@ret(@equ(@get(e1),@get(e2)))
+
+
+@def(randomize())
+	@usr(__seed__,n)
+	@set(__seed__,@timer())
+	@seed(@get(__seed__))
+@ret(@get(__seed__))
+
+@def(random(lower,upper))
+	@usr(num,n)
+	@usr(range,n) @set(range,@get(upper))
+
+	@sub(range,@get(lower))
+	@inc(range)
+
+	@set(num,@rand(@get(range)))
+	@add(num,@get(lower))
+@ret(@get(num))
+
+@def(_not(b))
+@ret(@not(@get(b)))
+
+@def(_and(a,b))
+@ret(@and(@get(a),@get(b)))
+
+@def(_xor(a,b))
+@ret(@xor(@get(a),@get(b)))
+
+@def(_or(a,b))
+@ret(@or(@get(a),@get(b)))
+
+@def(print(str))
+	@dis(@get(str))
+@ret(@get(str))
+
+@def(println(str))
+	@dis(@get(str)\n)
+@ret(@get(str))
+
+@def(input(prompt,var))
+	@dis(@get(prompt))
+	@inp(var)
+@ret(@get(var))
+
+!endif(__AISP_STAND_AIL)

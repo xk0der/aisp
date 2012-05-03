@@ -1,0 +1,21 @@
+Script to test ISL() and ISG() tokens
+2/September/2001
+Amit Singh
+
+
+@cls()
+
+
+@usr(a,n)
+@usr(b,n)
+
+@dis(Enter first  number :) @inp(a)
+@dis(Enter Second number :) @inp(b)
+
+@dis(@ift(@isg(@get(a),@get(b)),first is greater than second one))
+@dis(@ift(@isl(@get(a),@get(b)),Second is greater than the first one))
+@dis(@ift(@equ(@get(a),@get(b)),Both are equal!))
+@dis(\n)
+
+
+@end()

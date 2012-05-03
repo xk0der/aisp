@@ -1,0 +1,29 @@
+Script to test if() ... else() ... endif() tokens
+9/September/2001
+Amit Singh
+
+!include(stand.ail)
+
+@cls()
+
+@usr(name,s)
+@usr(age,n)
+@usr(bool,b)
+
+@print(Enter your name :) @inp(name);
+@print(Enter your age  :) @inp(age);
+
+@println()
+@println(User Info)
+@println(---------)
+@set(bool,@isg(@get(age),17))  TRUE if ADULT
+
+@println(Name = @get(name))
+
+@if(@get(bool))
+	@println(Is an adult)
+@endif()
+
+@if(@not(@get(bool)))
+	@println(Is a minor)
+@endif()

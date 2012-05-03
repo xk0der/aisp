@@ -1,0 +1,11 @@
+Script to check expression evaluator '[]'
+13/October/2001
+Amit Singh
+
+!include(stand.ail)
+
+@usr(a,n) @set(a,12)
+@usr(b,n) @set(b,2)
+
+@println(@_(a) / @_(b) = [a/b])
+@dis(Done!!\n)

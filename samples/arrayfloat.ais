@@ -1,0 +1,18 @@
+Script to test array of integers
+27/September/2001
+Amit Singh
+
+!include(stand.ail)
+
+@dim(scores,F,10)
+
+@usr(i,n)
+
+@for(i,0,9)
+	@set(scores,@_(i),@random(0,100).@random(0,99))
+@next()	
+
+@for(i,0,9)
+	@println(Value stored in scores\{@_(i)\} = @get(scores,@_(i)))
+@next()
+

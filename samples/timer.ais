@@ -1,0 +1,19 @@
+Script to test the timer() token
+18/September/2001
+Amit Singh
+
+!include(stand.ail)
+
+@usr(i,n) @set(i,0)
+@usr(t,n)
+
+@println(Looping 10000 times...)
+@set(t,@timer())
+@while(@isl(@get(i),10000))
+	@inc(i)
+@loop()
+@set(i,@timer())
+@sub(i,@get(t))
+
+@println(Time take to loop 10000 times = @get(i) seconds)
+

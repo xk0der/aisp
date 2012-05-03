@@ -1,0 +1,11 @@
+Script file to check the '!inlude()' directive and aisp.conf file
+16/December/2001
+Amit Singh
+
+!include(testlib.ail)
+
+@cls()
+	@dis(Testing !include\9\0\n)
+	@test(So which one gets executed!)
+@end()
+

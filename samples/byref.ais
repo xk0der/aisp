@@ -1,0 +1,22 @@
+Script to test pasing to arguents in functions by reference
+9/september/2001
+Amit Singh
+
+@fun(input(s,r))
+@fun(inpx(r))
+
+@def(input(prompt,var))
+	@dis(@get(prompt))
+	@inpx(var)
+@ret(@get(var))
+
+@def(inpx(varx))
+	@inp(varx)
+@ret(@get(varx))
+
+@usr(name,s)
+	@input(Your name :,name)
+	@dis(name = @get(name)\n)
+	@dis(\2rev\9\0 = @rev()\n)
+@end()
+

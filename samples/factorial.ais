@@ -1,0 +1,35 @@
+Script to genrate factofial of the entered number
+(Checks recursion in subroutines)
+24/August/2001
+Amit Singh
+
+@usr(n,N)			** Stores user input
+@usr(fact,N) @set(fact,1)	** Stores the calculated factorial
+@usr(a,N)			** 'Saves' variable 'n'
+
+@cls()				** Clear Screen
+
+* Display Prompt
+@dis(Enter the number whose factorial is to be calculated :)
+@inp(n)				** Get user input
+
+@set(a,@get(n))			** a = n
+
+@jmr(calc)			** Jump to the factorial calculator subroutine 
+
+@dis(@get(a)! = @rev()\n)	** display n! = fact
+
+:end
+@end()				** we are done!!
+
+* This subroutine calcualtes the factorial of a number stored in the variable n
+:calc
+@jmp(@ift(@equ(@get(n),1),endsub) )	** if number is either 1. . .
+@jmp(@ift(@equ(@get(n),0),endsub) )	** . . .0 then return back!
+@mul(fact,@get(n))			** fact = fact * n
+@dec(n)					** n = n - 1 i.e. n--
+@jmr(calc)				** recurse!!
+
+:endsub
+@ret(@get(fact))			** return back!
+

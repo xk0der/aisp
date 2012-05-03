@@ -1,0 +1,15 @@
+Script to test chr() and asc() tokens
+5/October/2001
+Amit Singh
+
+!include(stand.ail)
+!include(string.ail)
+
+@usr(ch,s)
+@usr(a,n)
+
+@input(Enter a character   :,ch)
+@input(Enter an ASCII code :,a)
+
+@println(ASCII code of @left(@_(ch),1) = @_asc(ch))
+@println(Character Equivalent of ASCII code @_(a) = @_chr(a)) 

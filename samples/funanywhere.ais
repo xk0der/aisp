@@ -1,0 +1,39 @@
+Script to test if placing functions anywhere in the script works
+2/August/2001
+Last Edited: 15/December/2001 (Marked with '>')
+Amit Singh
+
+@fun(power(n,n))
+
+@def(power(num1,num2))
+    @usr(result,n) @set(result,1)
+>   @usr(flag,b) @set(flag,FALSE)
+		
+>   @if([num2==0])
+>	@jmp(done)
+>   @endif()
+
+>   @if([num2<0])
+>   	@[flag=TRUE]
+>	@[num2=[-1*num2]]
+>   @endif()
+
+    :loop	
+	@mul(result,@get(num1))
+	@dec(num2)
+    @jmp(@iff(@equ(@get(num2),0),loop))
+    :done
+>   @if(@get(flag))
+>    	@set(result,[1/result])
+>   @endif()
+			
+@ret(@get(result,%.10))
+
+@cls()
+	@usr(x,n) @usr(n,n) @usr(r,n)
+	@dis(Enter a number :) @inp(x)
+	@dis(What power to raise @get(x) to..? ) @inp(n)
+	@[r=@power(@get(x),@get(n))]
+	@dis( @get(x)^@get(n) = @get(r,%.10)\n)
+@end()
+

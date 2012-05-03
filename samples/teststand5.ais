@@ -1,0 +1,18 @@
+Script to test 0.0.5 shortcuts of stand.ail library
+23/September/2001
+Amit Singh
+
+!include(stand.ail)
+
+@usr(num1,n)
+@usr(num2,n)
+
+@cls()
+
+@input(Enter 1st number:,num1)
+@input(Enter 2nd number:,num2)
+
+@println(num1 = @_(num1)\t num2 = @_(num2))
+@println(num1 < num2\t @<(@_(num1),@_(num2)))
+@println(num1 > num2\t @>(@_(num1),@_(num2)))
+@println(num1 = num2\t @=(@_(num1),@_(num2)))

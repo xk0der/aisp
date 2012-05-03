@@ -1,0 +1,38 @@
+Testing Function Calling!
+1/September/2001
+Amit Singh
+
+@fun(test(s,n,s,b))
+
+@usr(g,n)
+@set(g,12)
+
+@usr(s,s)
+@set(s,This is a text!)
+
+@cls()
+
+@dis(g = @get(g)\n)
+@dis(Calling \2test\9\0...\n)
+@dis(Value returned = '@test(Hello,@get(g),@get(s),FALSE)'\n)
+@dis(back in main!\n)
+@dis(g = @get(g)\n)
+@dis(Done!\n)
+@end()
+
+
+@def(test(str,num,str2,bool))
+	@usr(g,n)
+	@set(g,256)
+	@dis(In function!\n)
+	@dis(Arguments received....\n)
+	@dis(str  = @get(str)\n)
+	@dis(str2 = @get(str2)\n)
+	@dis(num  = @get(num)\n)
+	@dis(bool = @get(bool)\n)
+
+	@dis(\nLocal Variable value..\n)	
+	@dis(g = @get(g)\n)
+	@dis(Returning back...\n)
+@ret(Okay!)
+

@@ -1,0 +1,34 @@
+Script to display predefined terms!
+23/September/2001
+Last Edited : 15/December/2001
+Amit Singh
+
+
+!include(stand.ail)
+
+@println( )
+!ifdef(__APP__)
+@println(__APP__		= @term(__APP__))
+!endif()
+
+!ifdef(__INFO__)
+@println(__INFO__	= @term(__INFO__))
+!endif()
+
+!ifdef(__VERSION__)
+@println(__VERSION__	= @term(__VERSION__))
+!endif()
+
+!ifdef(__VER__)
+@println(__VER__		= @term(__VER__))
+!endif()
+
+!ifdef(__RELEASE__)
+@println(__RELEASE__	= @term(__RELEASE__))
+!endif()
+
+!ifdef(__BUILD__)
+@println(__BUILD__	= @!(__BUILD__))
+!endif()
+
+@println()

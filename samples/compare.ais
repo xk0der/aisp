@@ -1,0 +1,25 @@
+Comparing of Two Strings using []
+8/November/2001
+Amit Singh
+
+!include(stand.ail)
+
+
+@usr(res,B)
+@usr(str,S)
+@usr(usr,S)
+
+@set(str,okay)
+
+@cls()
+
+	@input(Enter Password :,usr)
+	
+	@[res=@equ(@_(str),@_(usr))]
+	@if(@_(res))
+		@println(Password Okay!)
+	@else()
+		@println(Incorrect Password\nAccess Denied!!)
+	@endif()
+@end()
+

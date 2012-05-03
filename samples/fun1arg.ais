@@ -1,0 +1,17 @@
+Script to test functions with One Argument!
+8/September/2001
+Amit Singh
+
+@fun(testn(s))
+
+
+@def(testn(num))
+	@dis(num = @get(num)\n)
+@ret()
+
+
+@cls()
+	@testn(856)
+	@testn(234)
+	@dis(\2rev\9\0 = @rev()\n)	
+@end()

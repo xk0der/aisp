@@ -1,0 +1,34 @@
+Script to test nested loops
+9/September/2001
+
+!include(stand.ail)
+
+@usr(a,n)
+@usr(b,n)
+@usr(c,n)
+@usr(d,n)
+
+@usr(cnt,n)
+@set(cnt,0)
+
+@set(a,8)
+@while(@isg(@get(a),0))
+	@set(b,7)
+	@while(@isg(@get(b),0))
+		@set(c,6)
+		@while(@isg(@get(c),0))
+			@set(d,5)
+			@while(@isg(@get(d),0))
+				@println(@get(a) @get(b) @get(c) @get(d))
+				@dec(d)
+				@inc(cnt)
+			@loop()
+			@dec(c)
+		@loop()
+		@dec(b)
+	@loop()
+	@dec(a)
+@loop()
+
+@print(looped 8 x 7 x 6 x 5 = @get(cnt) times!\n)
+@end()

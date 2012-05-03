@@ -1,0 +1,22 @@
+Factorial using functions!
+1/September/2001
+Amit Singh
+
+
+@fun(fact(n))
+
+
+@cls()
+
+@usr(num,n)
+@dis(Enter a number to find its factorial :)
+@inp(num)
+@dis(@get(num)! = @fact(@inc(num))\n)
+
+@end()
+
+@def(fact(n))
+	@jmp(@ift(@equ(@get(n),1),done) )
+	@mul(n,@fact(@dec(n)))
+:done
+@ret(@get(n))

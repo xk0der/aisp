@@ -1,0 +1,22 @@
+Script to test []
+16/October/2001
+Amit Singh
+
+!include(stand.ail)
+
+@usr(a,n)
+@usr(b,n)
+@usr(res,n)
+
+@[a=12] [b=22]
+
+@println(a = @_(a) \< b = @_(b))
+@[res = (a*b)/(a+b)]
+@println(\9@_(a)*@_(b)\0/\9@_(a)+@_(b)\0 = @get(res,%.5))
+@println(12+6/2*2 = [12+6/2*2])
+@println(-2 + -3 = [-2+-3])
+@println(TRUE || FALSE = [TRUE || FALSE])
+@println(TRUE && TRUE = [TRUE && TRUE])
+@println(!TRUE = [!TRUE] \c !FALSE = [!FALSE])
+@println(Done!!)
+

@@ -1,0 +1,60 @@
+String handling library		0.0.2
+Dated 		: 26/September/2001
+Last edited 	: 26/September/2001
+Amit Singh
+
+_tolower(var)			0.0.1
+_lcase(var)
+	- Convert alphabets stored in the string variable 'var' to lowercase
+	- Type of var = R(S)
+	- Returns : lower case string
+
+_toupper(var)			0.0.1
+_ucase(var)
+	- Convert alphabets stored in the string variable 'var' to uppercase
+	- Type of var = R(S)
+	- Returns : upper case string
+
+_chr(var)			0.0.2
+	- Returns the ASCII character equivalent 
+	- Type of var = R(N)
+	- Returns : a character 
+
+_asc(var)			0.0.2
+	- Returns the ASCII value of the first character of the string
+	- Type of var = R(S)
+	- Returns : a number ( ASCII value)
+
+!ifndef(__AISP_STRING_AIL)
+!define(__AISP_STRING_AIL)
+
+!include(stand.ail)
+
+
+@fun(_tolower(r))
+@fun(_lcase(r))	
+@fun(_toupper(r))
+@fun(_ucase(r))
+
+@fun(_chr(r))
+@fun(_asc(r))
+
+@def(_chr(num_var))
+@ret(@chr(@_(num_var)))
+
+@def(_asc(str_var))
+@ret(@asc(@_(str_var)))
+
+@def(_tolower(str_var))
+@ret(@tolower(@_(str_var)))
+
+@def(_lcase(str_var))
+@ret(@tolower(@_(str_var)))
+
+@def(_toupper(str_var))
+@ret(@toupper(@_(str_var)))
+
+@def(_ucase(str_var))
+@ret(@toupper(@_(str_var)))
+
+!endif(__AISP_STRING_AIL)

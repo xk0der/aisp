@@ -1,0 +1,31 @@
+Test Script
+6/August/2001
+Amit Singh
+
+@usr(nAme,s)
+@usr(agE,N)
+
+
+@usr(BooL,b)
+@usr(stRIng,S)
+@usr(num,n)
+
+@set(bool,TRUE)
+@set(string,This is a very very very very very long test string containing 'very' 6 times!!)
+@set(nUM,40123)
+
+@Cls()
+@Dis(This is a test string@NLN())
+@Dis(Enter your Name :)
+@Inp(NaME)
+@Dis(Enter your age   :)
+@Inp(AGe)
+
+Comment String
+
+@dis(Hello @GeT(nAMe) so you are @gEt(AgE) years old@nln())
+
+@dis(Test string.....)
+@dis(continues!@nln())
+@dis(@get(stRing) @get(Num) @get(bOOl)@nln())
+

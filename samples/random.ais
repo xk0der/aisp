@@ -1,0 +1,27 @@
+Script to test random() function defined in stand.ail
+23/September/2001
+Amit Singh
+
+!include(stand.ail)
+
+
+@usr(i,n)	@set(i,0)
+@usr(done,b)	@set(done,False)
+@usr(temp,n)
+
+@randomize()
+
+@println(Random numbers between 100 and 200 \9both inclusive\0)
+
+@while(@_not(done))
+
+	@set(temp,@random(100,200))
+
+	@print(@get(temp)\t)
+	@inc(i)
+	@if(@isg(@get(i),100))
+		@set(done,True)
+	@endif()
+@loop()
+
+@println()

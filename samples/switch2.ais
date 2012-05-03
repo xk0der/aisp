@@ -1,0 +1,47 @@
+Script to switch...case (2)
+16/September/2001
+Amit Singh
+
+@cls()
+
+!include(stand.ail)
+
+@usr(num,n)
+@usr(done,b) @set(done,FALSE)
+@usr(a,n) @usr(b,n)
+@usr(str,s)
+
+@while( @not( @get(done) ) )
+
+	@println(------------- MAIN MENU -------------)
+	@println(1 - Maths  2 - Strings    3 - Fun  4 - Quit ) 
+	@println( )
+	@input(Enter your choice :,num)
+	@println( )
+	
+	@switch(@get(num))
+		:@case(1)
+			@input(Enter a number :,a)
+			@input(Enter another number :,b)
+			@set(num,@get(a))
+			@mul(num,@get(b))
+			@println(@get(a) x @get(b) = @get(num))
+			@break()
+		:@case(2)
+			@input(Enter your name :,str)
+			@println(Nice to meet you @get(str)!!)
+			@break()
+		:@case(3)
+			@input(Enter an adjective \9A bad one!!;\0  :,str)
+			@println(Microsoft is @get(str)!!) 
+			@break()
+		:@case(4)
+			@set(done,TRUE)
+			@break()
+		:@default()
+			@println(Sorry that option is not listed in the menu!!)
+	@endswitch()
+	@println( )
+@loop()
+@println(Script Done!!)
+

@@ -1,0 +1,64 @@
+Script to test JMR() token
+18/August/2001
+Amit Singh
+
+Declare variables
+@usr(a,n) @usr(b,n) @usr(r,n)
+@usr(ch,s) @usr(sgn,s)
+
+Get numbers
+@cls()
+
+:menu
+@dis(\n)
+@dis(----- Main Menu -----\n)
+@dis(1 - Add  2- Substract 3 - Multiplication  4 - Division 5 - Exit\n)
+@dis(Enter your choice \91..4\0:)
+@inp(ch)
+
+@jmp(@ift(@equ(@get(ch),5),end))
+
+@dis(Enter first number  :)
+@inp(a)
+@dis(Enter second number :)
+@inp(b)
+@set(r,@get(a))
+
+Jump to appropriate subroutine
+@set(sgn,none)
+@jmr(@ift(@equ(@get(ch),1),add) )
+@jmr(@ift(@equ(@get(ch),2),sub) )
+@jmr(@ift(@equ(@get(ch),3),mul) )
+@jmr(@ift(@equ(@get(ch),4),div) )
+
+@dis(@ift(@equ(@get(sgn),none),Invalid option!!)\n)
+@jmp(@ift(@equ(@get(sgn),none),end))
+
+Display result
+@dis(@get(a) @get(sgn) @get(b) = @rev()\n)
+
+:end
+@jmp(@iff(@equ(@get(ch),5),menu) )  Jump to menu if user didn't entered 5
+
+@end()
+
+:add
+	@set(sgn,+)
+	@add(r,@get(b))
+@ret(@get(r))
+
+:sub
+	@set(sgn,-)
+	@sub(r,@get(b))
+@ret(@get(r))
+
+:mul
+	@set(sgn,x)
+	@mul(r,@get(b))
+@ret(@get(r))
+
+:div
+	@set(sgn,/)
+	@div(r,@get(b))
+@ret(@get(r))
+

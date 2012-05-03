@@ -1,0 +1,43 @@
+Mathematics library
+16/October/2001
+Amit Singh
+
+!ifndef(__AISP_MATH_AIL)
+
+!include(stand.ail)
+!include(string.h)
+
+@usr(MT_PI,n)	[MT_PI = (22/7)]
+
+
+@fun(abs(n))
+@fun(_abs(r))
+
+@fun(int(n))
+@fun(_int(n))
+
+@fun(fraction(n))
+@fun(_fraction(n))
+
+@fun(PI())
+
+@fun(sgn(n))
+
+@fun(min(n,n))
+@fun(max(n,n))
+
+
+@def(PI())
+@ret(@get(MT_PI,%.7))
+
+@def(abs(num))
+	@usr(num2,s)
+	@if([num<0])
+		@_trim(num1)
+		@set(num2,@mid(@_(num),))		
+	@else()
+	
+	@endif()
+@ret(@_(num2))
+
+!endif(__AISP_MATH_AIL)

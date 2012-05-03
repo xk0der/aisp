@@ -1,0 +1,193 @@
+Guess Game
+AISP port of the original QBasic GUESS games which was later ported to Linux/C++
+4/October/2001
+Amit Singh
+
+!include(stand.ail)
+
+!define(_TRIES_, 6)			* Maximum Tries
+!define(_LOWER_, 50)		* Lower limit
+!define(_UPPER_,500)		* Upper limit
+
+*!define(DEBUG)
+
+@fun(intro())
+@fun(cen(s))
+@fun(pause())
+
+
+@begin()				* Dummy token 
+	@usr(hidden,n) 							* Number to guess
+	@usr(limit,n)							* Upper limit
+	@usr(tries,n) @set(tries,@!(_TRIES_))	* # of tries
+	@usr(i,n)								* Loop counter
+	@usr(res,n)								* User's guess
+	@usr(temp,n)							* Temporary Variable
+	@usr(done,b) @set(done,FALSE)			* we aren't done yet
+	@usr(ch,s)								* Y/N, response
+
+   @while(@_not(done))			
+	@set(tries,@!(_TRIES_))
+	@intro()								* Display introduction
+
+	@cls()
+	
+	@cen(_.=~'^'~=._.=~'^'~=._ G U E S S  G A M E _.=~'^'~=._.=~'^'~=._)
+	@cen(------------------)
+
+	* get Upper Limit
+	@println( )
+	@input(Enter Upper Limit \9>=@!(_LOWER_) & <=@!(_UPPER_)\0 :,limit)
+	
+	* make sure the range is in limit	
+	@if(@<(@_(limit),@!(_LOWER_)))	
+		@set(limit,@!(_LOWER_))
+	@endif()
+
+	@if(@>(@_(limit),@!(_UPPER_)))
+		@set(limit,@!(_UPPER_))
+	@endif()
+
+	@randomize()						* So that we get a different game everytime
+	@set(hidden,@random(0,@_(limit)))	* Get the random number
+	
+	* Make the user ready! 
+	@println(I am thinking of a number between 0 and @_(limit)!)
+	@println(Can you guess it in @_(tries) tries!!)
+	@println( )
+
+	* Get all of user's guesses
+	@for(i,1,@_(tries))
+	
+		!ifdef(DEBUG)
+			@println(Hidden number = @_(hidden))
+		!endif()
+		
+		@input(Try @_(i)\0 Your guess :,res)
+		
+		* Display hints if it in't the last try! 
+		@if(@<(@_(i),@!(_TRIES_)))	   		
+			@if(@<(@_(res),@_(hidden)))
+				@set(temp,@_(hidden))
+				@sub(temp,15)
+				@if(@>(@_(res),@_(temp)))
+					@println(Just try a little higher number!!)
+                                        @add(temp,10)
+                                        @if(@>(@_(res),@_(temp)))
+                                                @println(You are VERY close!)
+                                        @endif()
+				@else()	
+					@println(You are far too low!)
+				@endif()
+			@endif()
+		
+		
+			@if(@>(@_(res),@_(hidden)))
+				@set(temp,@_(hidden))
+				@add(temp,15)
+				@if(@<(@_(res),@_(temp)))
+					@println(Try a little smaller number!!)
+                                        @sub(temp,10)
+                                        @if(@<(@_(res),@_(temp)))
+                                                @println(You are VERY close!)
+                                        @endif()
+				@else()	
+					@println(You are shooting too high!)
+				@endif()
+			@endif()
+		@endif()
+
+		@if(@=(@_(res),@_(hidden))) 		* User Guessed it!!
+			@set(temp,@_(i))		* Save try #
+			@set(i,@inc(tries))		* Bail out of loop
+		@endif()
+	@next()	
+
+	* Display a Congratulatory message
+	@if(@=(@_(res),@_(hidden)))
+		
+		!ifdef(DEBUG)
+			@println( \2=\9\0 returned TRUE)
+			@println(res = @_(res) \" hidden = @_(hidden) \" temp = @_(temp))
+		!endif()
+
+		@switch(@_(temp))
+				:@case(1)
+					@println(Bulls eye!!!)
+					@break()
+				:@case(2)
+					@println(What a guess!)
+				:@case(3)
+					@println(You got it!)
+					@break()
+				:@case(4)
+				:@case(5)
+					@println(Just in time man!)
+					@break()
+				:@case(6)
+					@println(You got it at last!)
+					@break()
+		@endswitch()		
+	@else()
+		* Or this message!! :(
+		@println(Sorry you couldn't guess in time!)
+	@endif()
+
+	* Tell them what the hidden number was
+	@println(The number was @_(hidden))
+	@println( )
+	
+	* Ask them if they want to play this stupid game again!	
+	@input(Play again ([y]/n) :,ch)
+	@set(ch,@trim(@_(ch)))			
+	@set(ch,@ucase(@_(ch)))
+	@if(@=(@_(ch),N))
+		@set(done,TRUE)						* We are done
+	@endif()		
+   @loop()	
+@end()									* End Script
+
+* Intro & Help
+@def(intro())
+	@cls()
+	@cen(_.=~'^'~=._.=~'^'~=._ G U E S S  G A M E _.=~'^'~=._.=~'^'~=._)
+	@cen(------------------)
+	@cen(AISP incarnation of my QBasic Guess game which was later ported to Linux/C++)
+	@cen( )
+	@cen(Objective)
+	@cen(=========)
+	@cen(Objective of the games is to guess a number selected randomly by the) 
+	@cen(computer between a predefined range.)
+	@cen(This range can be adjusted by you! minimum range is 0 to @!(_LOWER_) and maximum)
+	@cen(is 0 to @!(_UPPER_).)
+	@cen( )
+	@cen(IMPORTANT)
+	@cen(=========)		
+	@cen(Watch out for the hints given by the computer!!)
+	@cen(They can be very helpfull!)
+	@cen( )
+	@pause()	
+@ret()
+
+* Pause for [ENTER] Key
+@def(pause())
+	@usr(null,s)
+	@print(Press ENTER to continue. . .)
+	@inp(null)
+@ret()
+
+* Centers a string
+@def(cen(str))
+	@usr(l,n) @usr(i,n)
+
+	@set(l,@len(@_(str)))
+	@set(i,40) 
+	@div(l,2)  
+	@sub(i,@_(l))
+
+	@for(l,1,@_(i))
+		@print( )
+	@next()  
+
+	@println(@_(str))
+@ret()

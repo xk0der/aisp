@@ -1,0 +1,15 @@
+Compare ver 2 ;)
+Coding this one for bug tracing!!
+15/December/2001
+Amit Singh
+
+
+@usr(str1,s) @usr(str2,s)
+
+@dis(enter a string       :) @inp(str1)
+@dis(Enter another string :) @inp(str2)
+
+@dis(Compare Result = @equ(@get(str1),@get(str2))\n)
+
+@end()
+

@@ -1,0 +1,27 @@
+C/C++ Function Mapping for AISP
+Dated   : 19th/Feb/2001
+Just a Demo...!! NOT COMPLETE!!
+Amit Singh
+
+!ifndef(__CPP_AIL)
+!define(__CPP_AIL)
+
+!include(stand.ail)
+
+@FUN(cout(S))
+@FUN(printf(S))
+
+
+@JMP(CPP_END)
+
+@DEF(cout(str))
+    @DIS(@getv(str))
+@RET(cout)
+
+@DEF(printf(str))
+    @DIS(@getv(str))
+@RET(printf)
+
+:CPP_END
+
+!endif(__CPP_AIL)
