@@ -34,16 +34,16 @@ void handle_args(int argc,char *argv[])
 	
 	if(argc>=2)
 	{
-		for(i=0;i<argc;i++)
+		for(i=1;i<argc;i++)
 		{
-			if(instr(argv[i],"-")!=-1 && instr(argv[i],"--")==-1 && !filename)
+			if(instr(argv[i],"-")==-1 && instr(argv[i],"--")==-1 && !filename)
 			{
 				filename = new char[strlen(argv[i])+1+4]; // +4 for .AIS
 				if(!filename) {
 					error(ERR_MEMALLOC,"main();");
 					exit(ERR_MEMALLOC);
 				}	
-				scopy(argv[i],filename,1,strlen(argv[i])-1);
+				scopy(argv[i],filename,0,strlen(argv[i])-1);
 			}
 			if(instr(argv[i],"--ver")!=-1)
 			{
@@ -88,12 +88,26 @@ void handle_args(int argc,char *argv[])
 				std::cout << "Template created 'template.txt'" << std::endl;
 				exit(0);			}
 			
+            if(instr(argv[i],"--include") != -1 || instr(argv[i], "-I") != -1)
+			{
+				if(i+1 >= argc)
+				{
+					error(ERR_ARGCNT, "--include");
+					exit(1);				
+                }
+				trim(argv[i + 1]);
+				include_dir = new char[strlen(argv[i + 1] + 1)];
+                strcpy(include_dir, argv[i + 1]);
+                i++;
+            }
+			
 			if(instr(argv[i],"--case")!=-1)
 			{
 				if(i+1>=argc)
 				{
 					error(ERR_ARGCNT,"--case");
-					exit(1);				}
+					exit(1);				
+                }
 				trim(argv[i+1]);
 				
 				if(cmp(argv[i+1],"1") || cmp(argv[i+1],"on") || cmp(argv[i+1],"true"))
@@ -103,7 +117,11 @@ void handle_args(int argc,char *argv[])
 				else
 				{
 					error(ERR_INVALIDARG,"--case");
-					exit(ERR_INVALIDARG);				}			}
+					exit(ERR_INVALIDARG);				
+                }
+
+                i++;
+             }
 		}
 	}
 	

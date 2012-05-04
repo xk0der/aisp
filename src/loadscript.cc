@@ -331,7 +331,6 @@ void maketemp(char const *fn)
 				if(!sf)
 				{
 					sf.close();
-					if(config_present)
 						if(include_dir)
 							make_include_file(xtempx);				
 				}					
@@ -641,7 +640,6 @@ void makedebugtemp(char const *fn)
 				sf.open(xtempx,std::ios::in);
 				if(!sf)
 				{
-					if(config_present)
 						if(include_dir)
 							make_include_file(xtempx);				}
 				sf.close();

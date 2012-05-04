@@ -10,3 +10,4 @@ all:
 clean:
 	rm -f src/*.o
 	rm -f aisp
+	rm -f aisp.exe
