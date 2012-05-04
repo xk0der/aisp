@@ -13,7 +13,7 @@
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
- 
+
 /** Stack Class Header **/
 
 #if !defined(_STACK_CLASS_H)
@@ -21,21 +21,21 @@
 
 class Stack
 {
-	struct linklist
-	{
-		long int data;
-		linklist *next;
-		linklist *prev;
-	};
-	int err;				// Error Flag
-	linklist *root;
-	linklist *curr;
-	public:
-		Stack(void);
-		void push(long int  d);
-		long int  pop();
-		int okay(void);
-		~Stack();
+    struct linklist
+    {
+        long int data;
+        linklist *next;
+        linklist *prev;
+    };
+    int err;				// Error Flag
+    linklist *root;
+    linklist *curr;
+public:
+    Stack(void);
+    void push(long int  d);
+    long int  pop();
+    int okay(void);
+    ~Stack();
 };
 #endif
 

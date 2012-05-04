@@ -13,7 +13,7 @@
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
- 
+
 
 
 /** Label Class Header **/
@@ -23,27 +23,27 @@
 
 class Label
 {
-	struct linklist
-	{
-		long 	Line;
-		char 	*label;
-		char  	*data; //For terms
-		linklist *next;
-		linklist *prev;
-	};
-	linklist *root;
-	linklist *curr;
-	linklist *head;
-	public:
-		Label(void);
-		void add(char *s,long l,char *d=NULL);
-		int islabel(char *n);
-		int isterm(char *n);
-		long line(char *n);
-		char *data(char *n,char *d);
-		void deletelabel(char *n);
-		void deleteterm(char *n);	
-		~Label();
+    struct linklist
+    {
+        long 	Line;
+        char 	*label;
+        char  	*data; //For terms
+        linklist *next;
+        linklist *prev;
+    };
+    linklist *root;
+    linklist *curr;
+    linklist *head;
+public:
+    Label(void);
+    void add(char *s,long l,char *d=NULL);
+    int islabel(char *n);
+    int isterm(char *n);
+    long line(char *n);
+    char *data(char *n,char *d);
+    void deletelabel(char *n);
+    void deleteterm(char *n);
+    ~Label();
 };
 
 #endif

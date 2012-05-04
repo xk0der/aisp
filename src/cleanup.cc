@@ -13,7 +13,7 @@
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
- 
+
 // Clean up
 #include <fstream>
 #include <iostream>
@@ -26,13 +26,13 @@
 
 void cleanup(void)
 {
-	if(script) unloadais();
-	
-	if(temp3) delete[] temp3;
-	if(filename)delete[] filename;
-	if(expr) delete[] expr;
-	if(rev) delete[] rev;
-	if(source_dir) delete[] source_dir;
-	if(include_dir) delete[] include_dir;	
+    if(script) unloadais();
+
+    if(temp3) delete[] temp3;
+    if(filename)delete[] filename;
+    if(expr) delete[] expr;
+    if(rev) delete[] rev;
+    if(source_dir) delete[] source_dir;
+    if(include_dir) delete[] include_dir;
 
 }

@@ -13,7 +13,7 @@
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
- 
+
 
 /** For Class Header **/
 
@@ -22,24 +22,24 @@
 
 class For
 {
-	struct linklist
-	{
-		double init;
-		double final;
-		double step;
-		char *name;
-		linklist *next;
-		linklist *prev;
-	};
-	int err;				// Error Flag
-	linklist *root;
-	linklist *curr;
-	public:
-		For(void);
-		void push(char *n,double i,double f,double s);
-		double pop(char *n,double &f, double &s);
-		int okay(void);
-		~For();
+    struct linklist
+    {
+        double init;
+        double final;
+        double step;
+        char *name;
+        linklist *next;
+        linklist *prev;
+    };
+    int err;				// Error Flag
+    linklist *root;
+    linklist *curr;
+public:
+    For(void);
+    void push(char *n,double i,double f,double s);
+    double pop(char *n,double &f, double &s);
+    int okay(void);
+    ~For();
 };
 
 #endif

@@ -15,7 +15,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, visit: http://www.gnu.org/licenses/
  */
- 
+
 /** Stack Class **/
 #include <fstream>
 #include <iostream>
@@ -30,63 +30,63 @@
 // Constructor
 Stack::Stack(void)
 {
-	root = new linklist;
-	if(!root)
-		error(ERR_MEMALLOC,"Stack::Stack();");
+    root = new linklist;
+    if(!root)
+        error(ERR_MEMALLOC,"Stack::Stack();");
 
-	root->prev = NULL;
-	root->next = NULL;
-	curr = root;
-	err = FALSE;
+    root->prev = NULL;
+    root->next = NULL;
+    curr = root;
+    err = FALSE;
 }
 
 // Pushes a 'long int' value on the stack
 void Stack::push(long int d)
 {
-	err= FALSE;
-	curr->data = d;
-	
-	curr->next = new linklist;
-				
-	if(!curr->next)
-		error(ERR_MEMALLOC,"Stack::push();");
-	
-				
-	curr->next->prev = curr;
-	curr = curr->next;
-	curr->next = NULL;
-}	
+    err= FALSE;
+    curr->data = d;
+
+    curr->next = new linklist;
+
+    if(!curr->next)
+        error(ERR_MEMALLOC,"Stack::push();");
+
+
+    curr->next->prev = curr;
+    curr = curr->next;
+    curr->next = NULL;
+}
 
 // Pops the value from the stack
 long int Stack::pop()
-{	
-	err = FALSE;
-	if(curr->prev)
-	{
-		curr = curr->prev;
-		//if(curr->next->data) delete[] curr->next->data;
-		delete curr->next;
-		curr->next = NULL;
-	}
-	else
-	{
-		err=TRUE;
-		return -255;
-	}
-	return curr->data;
+{
+    err = FALSE;
+    if(curr->prev)
+    {
+        curr = curr->prev;
+        //if(curr->next->data) delete[] curr->next->data;
+        delete curr->next;
+        curr->next = NULL;
+    }
+    else
+    {
+        err=TRUE;
+        return -255;
+    }
+    return curr->data;
 }
-		
+
 // Returns TRUE if the last POP operation was succesfull
 int Stack::okay(void)
-{	return !err;
+{   return !err;
 }
 
 // Destructor
 Stack::~Stack()
 {
-	do
-		pop();		// Empty Stack
-	while(okay()) ;
-	delete root;
+    do
+        pop();		// Empty Stack
+    while(okay()) ;
+    delete root;
 }
 

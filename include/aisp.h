@@ -13,7 +13,7 @@
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
- 
+
 
 /*
 ** aisp.h
@@ -23,7 +23,7 @@
 ** separtely.
 ** Also contains all the #define's, which contain : error codes,min max
 ** values for some data .. some string constants for default values etc.
-** 
+**
 ** (c) Amit Singh under the GNU's General Public License
 ** Please visit www.gnu.org for more informatoin
 ** Contact me at : amit@remail.com
@@ -63,7 +63,7 @@
 #define	EXP_VAR			"#_AISP_EXP_#"		// stores "exp" between function calls and subroutine branching
 #define INTERNAL		"#_internal_var_#"	// Scope of internal variables
 
-// Initializtion scripts & configuration files! 
+// Initializtion scripts & configuration files!
 #define INIT_DIR		"/.aisp"
 #define	CONFIG_FILE		"aisp.conf"
 
@@ -76,7 +76,7 @@
 #define ERR_OPEN			1		//Unable to open file
 #define ERR_WRITE			2		//Unable to write to disk
 #define ERR_READ			3		//Cant read
-// Memory Error	
+// Memory Error
 #define ERR_MEMALLOC		4		//Memory alloc err
 // Command Line
 #define ERR_INVALIDARG 		5		//Invalid arguement (parameter) on cmd line
@@ -124,105 +124,106 @@
 #define TEMPDEBUG 	"~temporary_debug.ais"	// Generated using a command line switch
 
 //extern enum tcode;
-enum tcode{
-	_cls,
-	_dis,
-	_ift,
-	_iff,
-	_if,
-	_endif,
-	_while,
-	_loop,
-	_whl,
-	_inp,
-	_switch,
-	_usr,
-	_set,
-	_get,
-	_nln,
-	_var,
-	_fun,
-	_equ,
-	_jmp,
-	_inc,
-	_dec,
-	_add,
-	_sub,
-	_mul,
-	_div,
-	_jmr,
-	_ret,
-	_end,
-	_rev,
-	_isg,
-	_isl,
-	_def,
-	_else,
-	_not,
-	_and,
-	_or,
-	_xor,
-	_trim,
-	_ltrim,
-	_rtrim,
-	_wnd,
-	_endswitch,
-	_elseif,
-	_break,
-	_rnd,
-	_rand,
-	_seed,
-	_timer,
-	_for,
-	_next,
-	_do,
-	_till,
-	_until,
-	_term,
-	_endfor,
-	_ucase,
-	_toupper_,		// _toupper conflicts with declaration in ctype.h
-	_lcase,
-	_tolower_,		// _tolower conflicts with declaration in ctype.h
-	_left,
-	_right,
-	_mid,
-	_cut,
-	_len,
-	_dim,
-	_push,
-	_pop,
-	_redim,
-	_stackokay,
-	_chr,
-	_asc,
-	_instr,
-	_rinstr,
-	___}; // 3 _
+enum tcode {
+    _cls,
+    _dis,
+    _ift,
+    _iff,
+    _if,
+    _endif,
+    _while,
+    _loop,
+    _whl,
+    _inp,
+    _switch,
+    _usr,
+    _set,
+    _get,
+    _nln,
+    _var,
+    _fun,
+    _equ,
+    _jmp,
+    _inc,
+    _dec,
+    _add,
+    _sub,
+    _mul,
+    _div,
+    _jmr,
+    _ret,
+    _end,
+    _rev,
+    _isg,
+    _isl,
+    _def,
+    _else,
+    _not,
+    _and,
+    _or,
+    _xor,
+    _trim,
+    _ltrim,
+    _rtrim,
+    _wnd,
+    _endswitch,
+    _elseif,
+    _break,
+    _rnd,
+    _rand,
+    _seed,
+    _timer,
+    _for,
+    _next,
+    _do,
+    _till,
+    _until,
+    _term,
+    _endfor,
+    _ucase,
+    _toupper_,		// _toupper conflicts with declaration in ctype.h
+    _lcase,
+    _tolower_,		// _tolower conflicts with declaration in ctype.h
+    _left,
+    _right,
+    _mid,
+    _cut,
+    _len,
+    _dim,
+    _push,
+    _pop,
+    _redim,
+    _stackokay,
+    _chr,
+    _asc,
+    _instr,
+    _rinstr,
+    ___
+}; // 3 _
 
 
 extern char *tstr[];
 
 extern char *predefined_terms[];
 
-extern int case_in_use;  // 0 = Not Case sensitive , 1 = Case Sensitive 	
-	
+extern int case_in_use;  // 0 = Not Case sensitive , 1 = Case Sensitive
+
 extern char	**script;
 extern long	total_lines;		// Total number of lines in the script file
 extern long 	cline;			// current line number being executed!
 extern char	*exp;			// Current expression
 extern int		narg;			// argc
 extern char 	**varg;			// argv
-//char	*temp;			
+//char	*temp;
 extern char	*temp1;
-extern char	*temp2;	
+extern char	*temp2;
 extern char	*temp3;	// *** use function stemp3(); to allocate memory for this var
 extern long	 tmpl;
 extern int	 tmpi;
 extern int 	 tmpi1;
 extern double tmpd;
 extern float  tmpf;
-extern char	*val;	
+extern char	*val;
 extern char *filename;
 
 extern double recurse;

@@ -15,7 +15,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, visit: http://www.gnu.org/licenses/
  */
- 
+
 
 
 /** Function class Header**/
@@ -25,27 +25,27 @@
 
 class Function
 {
-	struct linklist
-	{
-		char *fname;		// Function name
-		long start;			// Starting Line
-		long end;			// End Line
-		int argc;			// Number of arguments
-		char *Argt;		// 'Type' of arguments
-		linklist *next;
-		linklist *prev;
-	};
-	linklist *root;
-	linklist *head;
-	linklist *curr;
-	public:
-		Function(void);
-		void add(char *n,long s,long e,int na,char *at);
-		int isfun(char *n);
-		long line(char *n);
-		long eline(char *n);
-		int narg(char *n);
-		char argt(char *n,int i);
-		~Function();
-};		
+    struct linklist
+    {
+        char *fname;		// Function name
+        long start;			// Starting Line
+        long end;			// End Line
+        int argc;			// Number of arguments
+        char *Argt;		// 'Type' of arguments
+        linklist *next;
+        linklist *prev;
+    };
+    linklist *root;
+    linklist *head;
+    linklist *curr;
+public:
+    Function(void);
+    void add(char *n,long s,long e,int na,char *at);
+    int isfun(char *n);
+    long line(char *n);
+    long eline(char *n);
+    int narg(char *n);
+    char argt(char *n,int i);
+    ~Function();
+};
 #endif

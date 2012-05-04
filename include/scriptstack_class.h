@@ -13,28 +13,28 @@
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
- 
+
 /** scriptStack Class Header**/
 #if !defined(_SCRIPTSTACK_CLASS_H)
 #define _SCRIPTSTACK_CLASS_H
 
 class scriptStack
 {
-	struct linklist
-	{
-		char  *data;
-		linklist *next;
-		linklist *prev;
-	};
-	int err;				// Error Flag
-	linklist *root;
-	linklist *curr;
-	public:
-		scriptStack(void);
-		void push(char *d);
-		char *pop(char *d);
-		int okay(void);
-		~scriptStack();
+    struct linklist
+    {
+        char  *data;
+        linklist *next;
+        linklist *prev;
+    };
+    int err;				// Error Flag
+    linklist *root;
+    linklist *curr;
+public:
+    scriptStack(void);
+    void push(char *d);
+    char *pop(char *d);
+    int okay(void);
+    ~scriptStack();
 };
 
 #endif

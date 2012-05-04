@@ -1,14 +1,14 @@
 /**************************************************************************************************\
-  
+
  						       |""""""" |"""""""   |"""""""  |"""""""
-  						       |     |     |       |     |   |     |   
+  						       |     |     |       |     |   |     |
   						       |  ___|     |       |  ___    |  ___|
-  						       |           |             |   |    
-  						       |     |     |       |"    |   |  
+  						       |           |             |   |
+  						       |     |     |       |"    |   |
   						       |     |  |""   ""   | """""   |
-  
-  								 Amitz Interpreted Script Processor  
-  
+
+  								 Amitz Interpreted Script Processor
+
 \***************************************************************************************************/
 /*''\__/``''\__/``''\__/``''\__/``''\__/``''\__/``''\__/``''\__/``''\__/``''\__/``''\__/``''\__/``*\
 **                             AISP Amitz Interpreted Script Processor							  **
@@ -39,7 +39,7 @@
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
- 
+
 
 
 #include <iostream>
@@ -52,19 +52,19 @@
 #include <ctime>
 #include "aisp.h"
 
-	
+
 // Main
 int main (int argc, char *argv[])
 {
-	initialize();				// Initialize the processor
-	
-	handle_args(argc,argv);		// Handle any command line arguments
-	loadais (filename);			// Load the AISP Script file into memory
-	preinterpret();				// Perform some preinterpretation processing
-	interpret();				// Interpret the Script
-	unloadais();				// Unload the script
-	
-	cleanup();					// Clean up the mess!! ;)
-	
-	return 0;					// if we've reached here everything has gone fine
+    initialize();				// Initialize the processor
+
+    handle_args(argc,argv);		// Handle any command line arguments
+    loadais (filename);			// Load the AISP Script file into memory
+    preinterpret();				// Perform some preinterpretation processing
+    interpret();				// Interpret the Script
+    unloadais();				// Unload the script
+
+    cleanup();					// Clean up the mess!! ;)
+
+    return 0;					// if we've reached here everything has gone fine
 }

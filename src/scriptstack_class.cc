@@ -13,7 +13,7 @@
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
- 
+
 /** Script Stack Class **/
 #include <fstream>
 #include <iostream>
@@ -27,73 +27,73 @@
 // Constructor
 scriptStack::scriptStack(void)
 {
-	root = new linklist;
-	if(!root)
-		error(ERR_MEMALLOC,"Stack::Stack();");
+    root = new linklist;
+    if(!root)
+        error(ERR_MEMALLOC,"Stack::Stack();");
 
-	root->prev = NULL;
-	root->next = NULL;
-	curr = root;
-	err = FALSE;
+    root->prev = NULL;
+    root->next = NULL;
+    curr = root;
+    err = FALSE;
 }
-			
+
 // Pushes a String on the stack
 void scriptStack::push(char *d)
 {
-	err= FALSE;
-	curr->data = new char[strlen(d)+1];
-	if(!curr->data) error(ERR_MEMALLOC,"scriptStack::push();");
-	strcpy(curr->data,d);
-	
-	curr->next = new linklist;
-				
-	if(!curr->next)
-		error(ERR_MEMALLOC,"Stack::push();");
-	
-				
-	curr->next->prev = curr;
-	curr = curr->next;
-	curr->next = NULL;
-	curr->data = NULL;
-}	
-		
+    err= FALSE;
+    curr->data = new char[strlen(d)+1];
+    if(!curr->data) error(ERR_MEMALLOC,"scriptStack::push();");
+    strcpy(curr->data,d);
+
+    curr->next = new linklist;
+
+    if(!curr->next)
+        error(ERR_MEMALLOC,"Stack::push();");
+
+
+    curr->next->prev = curr;
+    curr = curr->next;
+    curr->next = NULL;
+    curr->data = NULL;
+}
+
 // Pops the value from the stack
 char *scriptStack::pop(char *d)
-{	
-	err = FALSE;
-	if(curr->prev)
-	{
-		curr = curr->prev;
-		if(curr->next->data) delete[] curr->next->data;
-		delete curr->next;
-		curr->next = NULL;
-	}
-	else
-	{
-		err=TRUE;
-		return NULL;
-	}
-	strcpy(d,curr->data);
-	return d;
+{
+    err = FALSE;
+    if(curr->prev)
+    {
+        curr = curr->prev;
+        if(curr->next->data) delete[] curr->next->data;
+        delete curr->next;
+        curr->next = NULL;
+    }
+    else
+    {
+        err=TRUE;
+        return NULL;
+    }
+    strcpy(d,curr->data);
+    return d;
 }
 
 // Returns TRUE if the last POP operation was succesfull
 int scriptStack::okay(void)
-{	return !err;
+{   return !err;
 }
-		
+
 // Destructor
 scriptStack::~scriptStack()
 {
-	char *tmp=new char[255];
-	if(!tmp) error(ERR_MEMALLOC,"@scriptSatck();");
-		
-	do
-		pop(tmp);
-	while(okay()) ;
-	
-	if(root->data) delete[] root->data;
-	
-	delete root;
+    char *tmp=new char[255];
+    if(!tmp) error(ERR_MEMALLOC,"@scriptSatck();");
+
+    do
+        pop(tmp);
+    while(okay()) ;
+
+    if(root->data) delete[] root->data;
+
+    delete root;
 }
 
