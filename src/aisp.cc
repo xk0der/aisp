@@ -16,12 +16,12 @@
 **                                  Dated        : 05/August/2001								  **
 **                                  Last Updated : 17/December/2001								  **
 **                                          Amit Singh											  **
-**                                   (c) 2001 under GNU GPL										  **
-**                   Please Read the GNU General Public License (GPL) at http://www.gnu.org		  **
+**                                   (c) 2001-2012, Amit Singh (xk0der) 						  **
+**                   Please Read the GNU General Public License (GPLv3) at http://www.gnu.org     **
 **                               for the licensing terms of this software!						  **
 **																								  **
 **											Contact me at										  **
-**									       amit@remail.com										  **
+**									       amit@xkoder.com										  **
 \*''\__/``''\__/``''\__/``''\__/``''\__/``''\__/``''\__/``''\__/``''\__/``''\__/``''\__/``''\__/``*/
 
 /*
@@ -33,7 +33,7 @@
  *  This program is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Library General Public License for more details.
+ *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
