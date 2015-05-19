@@ -38,6 +38,6 @@ And put following lines in your `.vimrc` file
     au BufRead,BufNewFile *.ail set filetype=ais
 ```
 
-**This is how the code gets highlited on my system**
+**This is how the code gets highlighted on my system**
 ![Syntax Highlighting Screenshot](misc/screenshots/aisp-vim-syntax.png)
 
