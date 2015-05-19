@@ -37,3 +37,7 @@ And put following lines in your `.vimrc` file
     au BufRead,BufNewFile *.ais set filetype=ais
     au BufRead,BufNewFile *.ail set filetype=ais
 ```
+
+**This how the code highlited on my system**
+![Syntax Highlithing Screenshot][misc/screenshots/aisp-vim-syntax.png]
+
