@@ -39,5 +39,5 @@ And put following lines in your `.vimrc` file
 ```
 
 **This how the code highlited on my system**
-![Syntax Highlithing Screenshot][misc/screenshots/aisp-vim-syntax.png]
+![Syntax Highlighting Screenshot](misc/screenshots/aisp-vim-syntax.png)
 
