@@ -112,12 +112,12 @@ int process(char *t, char *arg, int &i,int &a)
 
             stemp3(strlen(EXP_VAR)+1+40);
             sprintf(temp3,"%s%.0f",EXP_VAR,recurse);
-            var.creat(temp3,_string,exp,INTERNAL);	// store exp!
+            var.creat(temp3,_string,_expr,INTERNAL);	// store _expr!
 
             getarg(arg);
 
             cline = flist.line(t) - 1;
-            i = strlen(exp) + 2;
+            i = strlen(_expr) + 2;
 
             recurse++;
             sprintf(scope,"%i",(int)recurse);		// Change Scope!!!
@@ -423,7 +423,7 @@ int process(char *t, char *arg, int &i,int &a)
         //std::cout << "Jumping to : " << varg[0] <<"**" << label.islabel(varg[0]) << std::endl;
         tmpl = label.line(varg[0]);
         cline = tmpl-1;
-        i = strlen(exp)+2; // signal completion of execution
+        i = strlen(_expr)+2; // signal completion of execution
         script_inif = 0;
         break;
     case _add:
@@ -501,11 +501,11 @@ int process(char *t, char *arg, int &i,int &a)
 
         stemp3(strlen(EXP_VAR)+1+40);
         sprintf(temp3,"%s%.0f",EXP_VAR,recurse);
-        var.creat(temp3,_string,exp,INTERNAL);	// store exp!
+        var.creat(temp3,_string,_expr,INTERNAL);	// store _expr!
 
         tmpl = label.line(varg[0]);
         cline = tmpl-1;
-        i = strlen(exp)+2;	// signal completion of execution!
+        i = strlen(_expr)+2;	// signal completion of execution!
         recurse++;			// recurse to one more level!
         break;
     case _ret:
@@ -522,7 +522,7 @@ int process(char *t, char *arg, int &i,int &a)
         //std::cout << "In ret temp3 = **" << temp3 <<"**" << std::endl;
         cline = setreturned(temp3) - 1;
 
-        i=strlen(exp)+2;
+        i=strlen(_expr)+2;
 
 
         recurse--;		// recurse back!
@@ -541,7 +541,7 @@ int process(char *t, char *arg, int &i,int &a)
         break;
     case _end:
         cline = total_lines+1;
-        i = strlen(exp)+2;
+        i = strlen(_expr)+2;
         break;
     case _rev:
         if(strlen(rev)<1)
@@ -561,7 +561,7 @@ int process(char *t, char *arg, int &i,int &a)
                     error(ERR_MISSINGRET,"@def",i);
             }
             cline = tmpi;
-            i=strlen(exp)+2;
+            i=strlen(_expr)+2;
         }
         i = rexp("def",i,a);
         break;
@@ -760,7 +760,7 @@ int process(char *t, char *arg, int &i,int &a)
                     break;
                 }
             }
-            i = strlen(exp)+2;
+            i = strlen(_expr)+2;
             if(!flag) error(ERR_MISSINGENDSWITCH,"@break()",i);
         }
         else
@@ -773,10 +773,10 @@ int process(char *t, char *arg, int &i,int &a)
             i=rexp("  @dis(hey!)",i,a);
             delete[] temp1;*/
             cline = label.line(temp3)-1;
-            i = strlen(exp)+2;
+            i = strlen(_expr)+2;
             //script_inswitch++;
         }
-        //std::cout << " Exp = " << exp << std::endl;
+        //std::cout << " Exp = " << _expr << std::endl;
         break;
     case _break:
         tmpl = cline;
@@ -793,7 +793,7 @@ int process(char *t, char *arg, int &i,int &a)
             }
         }
         if(!flag) error(ERR_MISSINGENDSWITCH,"@break()",i);
-        i = strlen(exp)+2;
+        i = strlen(_expr)+2;
         break;
     case _endswitch:
         script_inswitch--;
@@ -846,7 +846,7 @@ int process(char *t, char *arg, int &i,int &a)
         sprintf(temp1,"%f",data);
         var.set(temp3,temp1);
         if(data<=final)
-        {   i=strlen(exp)+2;
+        {   i=strlen(_expr)+2;
             cline = forstack.pop();
             forstack.push(cline);
             fordata.push(temp3,data,final,step);
@@ -870,7 +870,7 @@ int process(char *t, char *arg, int &i,int &a)
         if(cmp(varg[0],"FALSE"))
         {
             cline = loopstack.pop() - 1;
-            i = strlen(exp)+2;
+            i = strlen(_expr)+2;
         }
         if(script_inloop<0) error(ERR_MISSINGDO,"@until()",i);
         break;
@@ -882,7 +882,7 @@ int process(char *t, char *arg, int &i,int &a)
         if(cmp(varg[0],"TRUE"))
         {
             cline = loopstack.pop() - 1;
-            i = strlen(exp)+2;
+            i = strlen(_expr)+2;
         }
         if(script_inloop<0) error(ERR_MISSINGDO,"@till()",i);
         break;
@@ -1030,14 +1030,14 @@ int process(char *t, char *arg, int &i,int &a)
     narg = 0;
 
     //std::cout << "Press any key to continue..." << cline << std::endl;
-    //std::cout << exp << std::endl;
+    //std::cout << _expr << std::endl;
     //tmpi = getchar();
 
     if(emit)
     {
         std::fstream efp("~aisp_emit.txt",std::ios::app);
         if(!efp) error(ERR_OPEN,"~aisp_emit.txt in process();");
-        efp <<"["<< cline<<"] exp = "	<<exp << std::endl;
+        efp <<"["<< cline<<"] _expr = "	<<_expr << std::endl;
         efp.close();
     }
 
@@ -1096,7 +1096,7 @@ int getarg(char *arg)
 
 int rexp(char *rv,int &i,int &a)
 {
-    int l = strlen(exp);
+    int l = strlen(_expr);
     int rvl = strlen(rv);
     int k,j;
     char *tmp;
@@ -1104,7 +1104,7 @@ int rexp(char *rv,int &i,int &a)
     int newsize = (l - (i-a)) + rvl  + 1;
 
     //std::cout << "**Debug Info : ";
-    //std::cout << "exp = " << exp << " | " << l << std::endl;
+    //std::cout << "_expr = " << _expr << " | " << l << std::endl;
     //std::cout << "rv =" << rv << " | " << rvl << std::endl;
     //std::cout << " | newsize = " << newsize << std::endl;
     //std::cout << "**DInfo END" << std::endl;
@@ -1117,26 +1117,26 @@ int rexp(char *rv,int &i,int &a)
         exit(ERR_MEMALLOC);
     }
 
-    scopy(exp,tmp,0,a-1);
+    scopy(_expr,tmp,0,a-1);
     k=a;
 
     for(j=0; j<rvl; j++,k++)
         tmp[k] = rv[j];
 
     for(j=i+1; j<l; j++,k++)
-        tmp[k] = exp[j];
+        tmp[k] = _expr[j];
     tmp[k] = '\0';
 
-    delete[] exp;
+    delete[] _expr;
 
-    exp = new char[newsize+1];
-    if(!exp)
+    _expr = new char[newsize+1];
+    if(!_expr)
     {
         error(ERR_MEMALLOC,"rexp()2");
         exit(ERR_MEMALLOC);
     }
-    strcpy(exp,tmp);
-    exp[newsize-1] = '\0';
+    strcpy(_expr,tmp);
+    _expr[newsize-1] = '\0';
 
     delete[] tmp;
     i = a-1;

@@ -28,7 +28,7 @@
 
 int case_in_use = 0;  	// 0 = Not Case sensitive , 1 = Case Sensitive
 int emit = FALSE;
-char	*exp;			// Current expression
+char	*_expr;			// Current expression
 
 void interpret()
 {
@@ -49,33 +49,33 @@ void interpret()
         if(!returned)	// Have we returned from a function or a sub routine?
         {
             l = strlen(script[cline]);
-            exp = new char[l+1];
-            if(!exp)
+            _expr = new char[l+1];
+            if(!_expr)
                 error(ERR_MEMALLOC,"interpret(); 1");
 
-            strcpy(exp,script[cline]);
+            strcpy(_expr,script[cline]);
         }
         else
         {
             l = strlen(expr);
-            exp = new char[l+1];
-            if(!exp)
+            _expr = new char[l+1];
+            if(!_expr)
                 error(ERR_MEMALLOC,"interpre(); 0");
-            strcpy(exp,expr);
+            strcpy(_expr,expr);
             i = ir;
             a = ar;
             i = rexp(rev,i,a);
-            l = strlen(exp);
+            l = strlen(_expr);
         }
         returned = FALSE;
 
         for(i=0; i<l; i++)
         {
-            if(exp[i]=='@') {
+            if(_expr[i]=='@') {
                 atr.push(i);    // Save position of '@' if found
                 atrflag = SET;
             }
-            if(exp[i]=='(')	// Save position of '(' if found
+            if(_expr[i]=='(')	// Save position of '(' if found
             {
                 lb.push(i);
                 if(!atrflag)	// If '(' was found without a matching '@'
@@ -86,8 +86,8 @@ void interpret()
                 atrflag = NOTSET;
             }
 
-            if(exp[i]=='[') lsb.push(i);
-            if(exp[i]==']')
+            if(_expr[i]=='[') lsb.push(i);
+            if(_expr[i]==']')
             {
 
                 a = b = lsb.pop();
@@ -97,17 +97,17 @@ void interpret()
                 if(!arg)		error(ERR_MEMALLOC,"interpret([])");
 
                 if(b+1==i) strcpy(arg," "); 	// If there isn't any space between '(' & ')' copy a SPACE
-                else scopy(exp,arg,b+1,i-1);	// else the arguments
+                else scopy(_expr,arg,b+1,i-1);	// else the arguments
 
                 stemp3(MAXSIZE);
                 strcpy(temp3,arg);
                 evaluate(temp3);
                 i = rexp(temp3,i,a);
 
-                l = strlen(exp);					// Reset the lenght of the 'exp'
+                l = strlen(_expr);					// Reset the lenght of the '_expr'
 
                 if(i>=l) break; // Break out of for
-                if(instr(exp,"@")==-1 && instr(exp,"(")==-1 && instr(exp,")")==-1) {
+                if(instr(_expr,"@")==-1 && instr(_expr,"(")==-1 && instr(_expr,")")==-1) {
                     i=l;
                     break;
                 }
@@ -116,7 +116,7 @@ void interpret()
                 continue;
             }
 
-            if(exp[i]==')')	// If ')' encountered
+            if(_expr[i]==')')	// If ')' encountered
             {
                 a = atr.pop();	// Retreive position of last '@'
                 b = lb.pop();		// and '('
@@ -128,23 +128,23 @@ void interpret()
                     error(ERR_BCOUNT,"interpret()");
                     exit(ERR_BCOUNT);
                 }
-                scopy(exp,t,a+1,b-1);			// Extract the token
+                scopy(_expr,t,a+1,b-1);			// Extract the token
                 arg = new char[(i- (b+1))+2 ]; 	// +2 to account for function having no arguments
                 if(!arg)		error(ERR_MEMALLOC,"interpret()");
 
                 // Get arguments
                 if(b+1==i) strcpy(arg," "); 	// If there isn't any space between '(' & ')' copy a SPACE
-                else scopy(exp,arg,b+1,i-1);	// else the arguments
+                else scopy(_expr,arg,b+1,i-1);	// else the arguments
 
                 setcase(t);					// Set proper case of the token
 
                 i = process(t, arg,i,a);			// Process the token
-                l = strlen(exp);					// Reset the lenght of the 'exp'
+                l = strlen(_expr);					// Reset the lenght of the '_expr'
 
                 delete[] arg;
 
                 if(i>=l) break; // Break out of for
-                if(instr(exp,"@")==-1 && instr(exp,"(")==-1 && instr(exp,")")==-1) {
+                if(instr(_expr,"@")==-1 && instr(_expr,"(")==-1 && instr(_expr,")")==-1) {
                     i=l;
                     break;
                 }
@@ -163,7 +163,7 @@ void interpret()
             lsb.pop();	// Empty '[' symbol stack
         while(lsb.okay());
 
-        delete[] exp;
+        delete[] _expr;
         cline++;		// Proceed to next line
         if(cline>=total_lines) done = 1;		// End script if we've reached its end
     }

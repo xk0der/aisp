@@ -327,7 +327,7 @@ int Variable::value_new(char *n,int index, char *sp,char *format)
 
 int Variable::creat(char *n,vtype t,char *d,char *sp)
 {
-    //std::cout << "Creating variable " << n << " ,"<< cline <<","<< exp <<std::endl;
+    //std::cout << "Creating variable " << n << " ,"<< cline <<","<< _expr <<std::endl;
     if(varinscope(n,sp))
     {
         error(ERR_VARPRESENT,"Variable::creat()");

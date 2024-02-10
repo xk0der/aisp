@@ -109,10 +109,10 @@ char *getfunname(char *str)
 {
     unsigned int i=0,j=0;
 
-    while(exp[i]!='(' && i<strlen(exp)) i++;
+    while(_expr[i]!='(' && i<strlen(_expr)) i++;
     i++;
-    while(exp[i]!='(' && i<strlen(exp)) {
-        str[j]=exp[i];
+    while(_expr[i]!='(' && i<strlen(_expr)) {
+        str[j]=_expr[i];
         i++;
         j++;
     }
@@ -124,17 +124,17 @@ char *getfunname(char *str)
 char *getfunarg(char *str)
 {
     unsigned int i=0,j=0;
-    while(exp[i]!='(' && i<strlen(exp)) i++;
+    while(_expr[i]!='(' && i<strlen(_expr)) i++;
     i++;
-    while(exp[i]!='(' && i<strlen(exp)) i++;
+    while(_expr[i]!='(' && i<strlen(_expr)) i++;
     i++;
 
     j=0;
-    while(exp[i]!=')' && i<strlen(exp))
+    while(_expr[i]!=')' && i<strlen(_expr))
     {
-        if(exp[i]!=',')
+        if(_expr[i]!=',')
         {
-            str[j] = exp[i];
+            str[j] = _expr[i];
             j++;
             if(j>MAXSIZE-2)
                 error(ERR_MEMVIOLATION,"getfunarg();");
@@ -218,7 +218,7 @@ int setreturned(char *str)
     tmp = new char[strlen(EXP_VAR)+1+40];
     if(!tmp) error(ERR_MEMALLOC,"@ret()");
     sprintf(tmp,"%s%.0f",EXP_VAR,recurse-1);
-    var.valuescope(tmp,INTERNAL); // exp
+    var.valuescope(tmp,INTERNAL); // _expr
     var.deletenamescope(tmp,INTERNAL);
 
     if(expr) delete[] expr;

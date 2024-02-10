@@ -211,7 +211,7 @@ extern int case_in_use;  // 0 = Not Case sensitive , 1 = Case Sensitive
 extern char	**script;
 extern long	total_lines;		// Total number of lines in the script file
 extern long 	cline;			// current line number being executed!
-extern char	*exp;			// Current expression
+extern char	*_expr;			// Current expression
 extern int		narg;			// argc
 extern char 	**varg;			// argv
 //char	*temp;

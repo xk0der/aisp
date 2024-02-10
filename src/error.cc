@@ -143,7 +143,7 @@ void error(int code,char *msg,int i)
         std::cout << "Fatal Error!!!";
     }
     std::cout <<" - " << ((msg)?(msg):(NULL)) << std::endl;
-    std::cout << "Line No. :" << cline << std::endl << ((exp)?(exp):(NULL)) << std::endl;
+    std::cout << "Line No. :" << cline << std::endl << ((_expr)?(_expr):(NULL)) << std::endl;
     std::cout << ((script[cline])?(script[cline]):(NULL)) << std::endl;
     std::cout << "Position :" << i << std::endl;
 
